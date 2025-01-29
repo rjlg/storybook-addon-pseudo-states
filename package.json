@@ -10,12 +10,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chromaui/storybook-addon-pseudo-states.git"
+    "url": "git+https://github.com/rjlg/storybook-addon-pseudo-states.git"
   },
   "publishConfig": {
     "access": "public"
   },
-  "author": "Chromatic <support@chromatic.com>",
+  "author": "Rory",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
