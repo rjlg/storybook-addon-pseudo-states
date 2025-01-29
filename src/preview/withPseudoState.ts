@@ -175,10 +175,17 @@ export const withPseudoState: DecoratorFunction = (
 
 // Rewrite CSS rules for pseudo-states on all stylesheets to add an alternative selector
 const rewriteStyleSheets = (shadowRoot?: ShadowRoot) => {
-  let styleSheets = Array.from(shadowRoot ? shadowRoot.styleSheets : document.styleSheets)
-  if (shadowRoot?.adoptedStyleSheets?.length) styleSheets = shadowRoot.adoptedStyleSheets
-  styleSheets.forEach((sheet) => rewriteStyleSheet(sheet, !!shadowRoot))
-  if (shadowRoot && shadowHosts) shadowHosts.add(shadowRoot.host)
+  let styleSheets = Array.from(
+    shadowRoot ? shadowRoot.styleSheets : document.styleSheets
+  );
+
+  if (shadowRoot?.adoptedStyleSheets?.length) {
+    styleSheets = shadowRoot.adoptedStyleSheets;
+  } else if (!shadowRoot && document.adoptedStyleSheets?.length) {
+    styleSheets = styleSheets.concat(document.adoptedStyleSheets);
+  }
+
+  styleSheets.forEach((sheet) => rewriteStyleSheet(sheet, !!shadowRoot));
 }
 
 // Only track shadow hosts for the current story
